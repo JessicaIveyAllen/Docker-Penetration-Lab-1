@@ -1,0 +1,120 @@
+Docker Penetration Testing Lab Workbook
+
+🚀 Goal: Set up a Kali Linux-based penetration testing lab using Docker, volumes, and networking in a structured, beginner-friendly way.
+
+📂 Project Structure
+pentest-lab/
+│── docker-compose.yml           # Docker Compose file to define services
+│── Dockerfile                   # Defines the Kali Linux setup with tools
+│── tools/                       
+│   ├── wordlists/               # Placeholder for wordlists (SecLists, RockYou, etc.)
+│   ├── exploits/                # Store custom exploits or downloaded ones
+│   ├── reports/                 # Keep scan logs and test reports
+│── scripts/                     
+│   ├── auto_scan.sh             # Automate nmap scanning
+│   ├── proxy_setup.sh           # Automate BurpSuite proxy setup
+│── configs/                     
+│   ├── burpsuite.conf           # Optional: Custom BurpSuite config
+│   ├── mitmproxy.conf           # Optional: Custom MITMProxy config
+│── targets/                     
+│   ├── vulnerable-web/          # Docker-based test targets (e.g., DVWA, Metasploitable)
+│── README.md                    # Instructions & Documentation
+
+Step 1️⃣ - Create Dockerfile for Kali Linux Pentesting
+📌 Objective: Set up Kali Linux with essential penetration testing tools.
+Dockerfile
+# Use Kali Linux as base
+FROM kalilinux/kali-rolling
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update and install tools
+RUN apt-get update && apt-get install -y \
+    python3 python3-pip python3-requests python3-bs4 \
+    python3-cryptography vim nano tmux burpsuite dirb \
+    sqlmap nikto nmap wfuzz hydra metasploit-framework \
+    mitmproxy jq \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install additional Python packages
+RUN pip3 install --break-system-packages --no-cache-dir \
+    python-dotenv pyjwt ratelimiter 
+
+# Set working directory
+WORKDIR /app
+
+# Copy tools & scripts (if available)
+COPY scripts/ /app/scripts/
+COPY configs/ /app/configs/
+
+# Default command
+CMD ["/bin/bash"]
+
+Step 2️⃣ - Create docker-compose.yml for Multi-Container Setup
+📌 Objective: Set up multiple services: Kali Linux container, vulnerable web app, and network proxy.
+docker-compose.yml
+version: '3.8'
+
+services:
+  kali:
+    build: .
+    container_name: kali-pentest
+    volumes:
+      - ./tools:/tools
+      - ./scripts:/scripts
+      - ./configs:/configs
+      - ./reports:/reports
+    tty: true
+    networks:
+      - pentest-net
+
+  dvwa:
+    image: vulnerables/web-dvwa
+    container_name: dvwa
+    restart: always
+    ports:
+      - "8080:80"
+    networks:
+      - pentest-net
+
+  mitmproxy:
+    image: mitmproxy/mitmproxy
+    container_name: mitmproxy
+    ports:
+      - "8081:8080"
+    networks:
+      - pentest-net
+    command: mitmproxy --mode transparent
+
+networks:
+  pentest-net:
+    driver: bridge
+
+Step 3️⃣ - Add Useful Scripts
+📌 Objective: Automate common penetration testing tasks like running Nmap scans or setting up proxies.
+scripts/auto_scan.sh (Run Nmap Scan on DVWA)
+#!/bin/bash
+echo "[*] Running Nmap Scan on DVWA..."
+nmap -A -T4 dvwa
+Make it executable:
+chmod +x scripts/auto_scan.sh
+
+Step 4️⃣ - Build & Run the Lab
+1️⃣ Build the Kali container:
+docker-compose build
+2️⃣ Run the lab in detached mode:
+docker-compose up -d
+3️⃣ Access Kali shell:
+docker exec -it kali-pentest /bin/bash
+4️⃣ Test DVWA in your browser:
+Navigate to http://localhost:8080
+
+Step 5️⃣ - Next Steps
+🔹 Add more tools to your Kali container (e.g., gobuster, wpscan, recon-ng).
+🔹 Modify scripts for task automation (e.g., scanning, reporting).
+🔹 Create a more advanced reporting system for scan results and logs.
+
+🚀 Congratulations! You’ve just set up a beginner-friendly penetration testing lab using Docker. Let me know if you need improvements or customizations! 🐳💻
+
