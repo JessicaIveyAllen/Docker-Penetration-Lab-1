@@ -1,4 +1,5 @@
-🚀 **Goal**: Set up a Kali Linux-based penetration testing lab using Docker, volumes, and networking in a structured, beginner-friendly way. 
+🚀 **Goal**: 
+Set up a Kali Linux-based penetration testing lab using Docker, volumes, and networking in a structured, beginner-friendly way. 
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-black?logo=github)](https://github.com/JessicaIveyAllen)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)
