@@ -1,12 +1,14 @@
 # 🛠️ Docker Pentesting Lab - Beginner Workbook  
 
-![Docker](https://img.shields.io/badge/Docker-✅-blue)
-![Kali Linux](https://img.shields.io/badge/Kali_Linux-✅-blue)
+ [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-black?logo=github)](https://github.com/JessicaIveyAllen)
+![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)
+![Kali Linux](https://img.shields.io/badge/Kali_Linux-Rolling-blue?logo=linux)
 ![Pentesting](https://img.shields.io/badge/Pentesting-Lab-green)
+![Docker Compose](https://img.shields.io/badge/Docker_Compose-Supported-blue?logo=docker)
+![MITM Proxy](https://img.shields.io/badge/MITM_Proxy-Enabled-orange?logo=burpsuite)
+![Nmap](https://img.shields.io/badge/Nmap-Installed-blue?logo=nmap)
 
 🚀 **Goal**: Set up a Kali Linux-based penetration testing lab using Docker, volumes, and networking in a structured, beginner-friendly way.
-
----
 
 ## 📌 Features  
 ✅ Kali Linux with pre-installed pentesting tools  
