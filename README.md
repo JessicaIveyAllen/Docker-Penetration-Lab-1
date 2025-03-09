@@ -1,4 +1,4 @@
-Docker Pentesting with Kali Linux 
+🚀 **Goal**: Set up a Kali Linux-based penetration testing lab using Docker, volumes, and networking in a structured, beginner-friendly way. 
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-black?logo=github)](https://github.com/JessicaIveyAllen)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)
@@ -8,16 +8,12 @@ Docker Pentesting with Kali Linux
 ![MITM Proxy](https://img.shields.io/badge/MITM_Proxy-Enabled-orange?logo=burpsuite)
 ![Nmap](https://img.shields.io/badge/Nmap-Installed-blue?logo=nmap)
 
-🚀 **Goal**: Set up a Kali Linux-based penetration testing lab using Docker, volumes, and networking in a structured, beginner-friendly way.
-
 ## 📌 Features  
 ✅ Kali Linux with pre-installed pentesting tools  
 ✅ Vulnerable web applications for practice (DVWA)  
 ✅ MITM proxy setup for network traffic interception  
 ✅ Automated scanning scripts  
 ✅ Modular & easily expandable  
-
----
 
 ## 📂 Project Structure  
 
