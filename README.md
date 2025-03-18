@@ -81,9 +81,9 @@ docker-compose up --build -d
 This Dockerfile sets up a minimal Kali Linux environment with essential pentesting tools.
 
 ```Dockerfile
-FROM kalilinux/kali-rolling
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y \
+kalilinux/kali-rolling
+DEBIAN_FRONTEND=noninteractive
+apt-get update && apt-get install -y \
     python3 python3-pip python3-requests python3-bs4 \
     python3-cryptography vim nano tmux burpsuite dirb \
     sqlmap nikto nmap wfuzz hydra metasploit-framework \
